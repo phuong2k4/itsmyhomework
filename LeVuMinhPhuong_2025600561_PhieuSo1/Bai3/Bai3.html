@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            width: 300px;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .container .header{
+            font-size: 20px;
+            font-weight: bolder;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container .user,.pass{
+            float: left;
+
+            height: 30px;
+        }
+
+        .container .login,.password{
+            float: right;
+            margin-bottom: 10px;
+        }
+        .container .dn{
+            width: 100px;
+            margin-top: 10px;
+            margin-left: 40px;
+            float: left;
+        }
+        .container .ph{
+            width: 100px;
+            margin-top: 10px;
+            float: right;
+            margin-right: 40px;
+        }
+        .container .dn,.ph{
+            background-color: rgb(230, 255, 255);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <div class="header">ĐĂNG NHẬP DIỄN ĐÀN</div>
+            <div class="user">Tên đăng nhập: </div>
+            <input type="text" name="" class="login">
+            <div class="pass">Mật khẩu: </div>
+            <input type="text" name="" class="password">
+            <input type="button" value="Đăng Nhập" class="dn">
+            <input type="button" value="Phục Hồi" class="ph">
+        </form>
+    </div>
+</body>
+</html>
