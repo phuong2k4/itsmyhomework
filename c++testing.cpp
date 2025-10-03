@@ -201,6 +201,44 @@ int linearSearchAdvanced(int a[], int n, int k)
     }
 }
 
+void quickSortforInt(int a[], int left, int right)
+{
+    if (left > right)
+        return;
+    int i = left, j = right, p = a[(left + right) / 2];
+    while (i <= j)
+    {
+        while (a[i] < p)
+            i++;
+        while (a[j] > p)
+            j--;
+        if (i <= j)
+        {
+            swap(a[i], a[j]);
+            i++;
+            j--;
+        }
+    }
+    if(left<j)quickSortforInt(a, left, j);
+    if(right > i)quickSortforInt(a, i, right);
+}
+
+void quickSortforStr(string s[], int left , int right){
+    if(left >right)return;
+    int i = left, j = right;
+    string p = s[(left+right)/2];
+    while(i<=j){
+        while(s[i][0]-'A' < p[0]-'A') i++;
+        while(s[j][0]-'A' > p[0]-'A') j--;
+        if(i<=j){
+            swap(s[i],s[j]);
+            i++;j--;
+        }
+    }
+    if(left < j)quickSortforStr(s,left,j);
+    if(right > i) quickSortforStr(s,i,right);
+}
+
 int main()
 {
     int n;
@@ -210,7 +248,7 @@ int main()
     {
         cin >> a[i];
     }
-    selectionSortwithChar(a, n);
+    quickSortforStr(a, 0, n-1);
     for (int i = 0; i < n; i++)
     {
         cout << a[i] << " ";
