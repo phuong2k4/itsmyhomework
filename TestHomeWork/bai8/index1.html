@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 100vh;
+            margin: 20px;
+        }
+
+        /* 
+        .header {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: antiquewhite;
+        }
+        .menu{
+            width: 150px;
+            height: 200px;
+            float: left;
+            line-height: 200px;
+            text-align: center;
+            background-color: bisque;
+        }
+        .content{
+            background-color: blanchedalmond;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .footer{
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: wheat;
+            clear: both;
+        } */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(247, 243, 236);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .header .logo {
+            width: 250px;
+            height: 70px;
+            position: relative;
+        }
+
+        .logo img {
+            width: 200px;
+            height: 100%;
+        }
+
+        .logo .slogan {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            font-weight: bold;
+            font-style: oblique;
+            font-size: 15px;
+            font-family: monospace;
+        }
+
+        .picture {
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .picture img {
+            width: 100px;
+        }
+
+        .navbar {
+            height: 30px;
+            background-color: rgb(247, 243, 236);
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            float: left;
+            background-color: rgb(247, 243, 236);
+            height: 30px;
+            padding: 0 1em;
+            line-height: 30px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: monospace;
+            color: rgb(219, 53, 53);
+            border-right: 1px solid black;
+        }
+
+        .navbar ul li:hover {
+            color: pink;
+        }
+
+        .navbar_dropdown {
+            float: left;
+            border: 1px solid black;
+            display: block;
+
+            /* background-color: burlywood; */
+        }
+
+        .navbar_dropdown .title_navbar {
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: monospace;
+        }
+
+        .navbar_dropdown ul {
+            list-style-type: none;
+            padding: 0 1em;
+
+        }
+
+        .navbar_dropdown ul li {
+            height: 30px;
+            position: relative;
+            line-height: 30px;
+            text-align: justify;
+            color: black;
+            background-color: white;
+        }
+
+        .navbar_dropdown ul li img {
+            height: 10px;
+        }
+
+        #hide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 106%;
+            min-width: 200px;
+            border: 1px solid black;
+        }
+
+        .navbar_dropdown ul li:hover #hide {
+            display: block;
+        }
+
+        .production_zone {
+            clear: both;
+            display: inline-block;
+            margin-left: 20px;
+            width: 82.9%;
+            height: auto;
+        }
+
+        .production_zone .product_title {
+            background-color: chocolate;
+            height: 30px;
+            text-align: justify;
+            line-height: 30px;
+            padding: 0 1em;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
+        .card_information {
+            width: 200px;
+            height: 370px;
+            margin-top: 10px;
+        }
+
+        .card_information .pic {
+            width: 100%;
+            height: 55%;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .card_information .pic img {
+            transition: ease 0.5s;
+        }
+
+        .information {
+            height: 25%;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .subscription {
+            color: blue;
+        }
+
+        .cost {
+            color: red;
+        }
+
+        .card_information button {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: #003366;
+            color: white;
+        }
+
+        .card_information .subscription:hover {
+            color: #ffff66;
+        }
+
+        .card_information .pic:hover img {
+            transition: ease 0.5s;
+            transform: scale(1.2);
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 0.2fr 0.2fr 0.2fr 0.1fr;
+            gap: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="header">
+            header
+        </div>
+        <div class="menu">menu</div>
+        <div class="content">content</div>
+        <div class="footer">footer</div> -->
+        <div class="header">
+            <div class="logo">
+                <img src="./logo.png" alt="">
+                <div class="slogan">Bring Values To Customers</div>
+            </div>
+
+            <div class="picture">
+                <img src="./engine1.gif" alt="">
+                <img src="./engine2.gif" alt="">
+                <img src="./engine3.png" alt="">
+                <img src="./engine4.png" alt="">
+            </div>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li>Trang Chủ</li>
+                <li>Giới Thiệu</li>
+                <li>Sản Phẩm</li>
+                <li>Dịch Vụ</li>
+                <li>Ý Tưởng</li>
+                <li>Tin Tức</li>
+                <li>Liên Hệ</li>
+            </ul>
+        </div>
+        <div class="navbar_dropdown">
+            <div class="title_navbar">
+                DANH MỤC SẢN PHẨM
+            </div>
+            <ul>
+                <li> <img src="./rightarrow.png" alt=""> Máy, phụ kiện ép cắm viên</li>
+                <li><img src="./rightarrow.png" alt="">Máy và phụ kiện máy ép viên gỗ</li>
+                <li>
+                    <img src="./rightarrow.png" alt="">Máy và Phụ kiện máy ép viên phân bón
+                    <ul id="hide">
+                        <li><img src="./rightarrow.png" alt="">Máy ép viên phân bón</li>
+                        <li><img src="./rightarrow.png" alt="">Khuôn ép viên phân bón</li>
+                    </ul>
+                </li>
+                <li><img src="./rightarrow.png" alt="">Máy móc gia công khuôn ép cầm</li>
+                <li><img src="./rightarrow.png" alt="">Máy sản xuất thức ăn chăn nuôi</li>
+                <li><img src="./rightarrow.png" alt="">Bu lông cường độ cao</li>
+                <li><img src="./rightarrow.png" alt="">Habermmann Materials</li>
+                <li><img src="./rightarrow.png" alt="">Máy bôi trơn thực phẩm</li>
+                <li><img src="./rightarrow.png" alt="">Máy bơm dầu, bơm mỡ </li>
+                <li><img src="./rightarrow.png" alt="">Thiết bị thủy lực</li>
+                <li><img src="./rightarrow.png" alt="">Linh kiện thay thế máy may</li>
+            </ul>
+        </div>
+        <div class="production_zone">
+            <div class="product_title">MÁY, PHỤ KIỆN MÁY ÉP CẦM VIÊN</div>
+            <div class="card">
+                <div class="card_information">
+                    <div class="pic">
+                        <img src="./engine1.gif" alt="">
+                    </div>
+                    <div class="information">
+                        <div class="subscription">Waser SPM</div>
+                        <div class="cost">Giá: Liên hệ</div>
+                        <button>Xem chi tiết</button>
+                    </div>
+                </div>
+
+                <div class="card_information">
+                    <div class="pic">
+                        <img src="./engine1.gif" alt="">
+                    </div>
+                    <div class="information">
+                        <div class="subscription">Waser SPM</div>
+                        <div class="cost">Giá: Liên hệ</div>
+                        <button>Xem chi tiết</button>
+                    </div>
+                </div>
+
+                <div class="card_information">
+                    <div class="pic">
+                        <img src="./engine1.gif" alt="">
+                    </div>
+                    <div class="information">
+                        <div class="subscription">Waser SPM</div>
+                        <div class="cost">Giá: Liên hệ</div>
+                        <button>Xem chi tiết</button>
+                    </div>
+                </div>
+
+                <div class="card_information">
+                    <div class="pic">
+                        <img src="./engine1.gif" alt="">
+                    </div>
+                    <div class="information">
+                        <div class="subscription">Waser SPM</div>
+                        <div class="cost">Giá: Liên hệ</div>
+                        <button>Xem chi tiết</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
