@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 250px;
+            height: 200px;
+            background-color: antiquewhite;
+        }
+
+        form .tb1 {
+            width: 100%;
+            height: 100%;
+        }
+
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th#title {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        #xau,
+        #kq {
+            height: 20px;
+            line-height: 20px;
+            width: 96%;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <table class="tb1">
+            <tr>
+                <th colspan="2" id="title">Kiem Tra</th>
+            </tr>
+            <tr>
+                <td>Nhap xau:</td>
+                <td><input type="text" name="" id="xau1"></td>
+            </tr>
+            <tr>
+                <td>Nhap xau:</td>
+                <td><input type="text" name="" id="xau2"></td>
+            </tr>
+            <tr>
+                <td>Ket qua: </td>
+                <td><input type="text" id="kq"></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <button id="btn_xoa">Xoa</button>
+                    <button id="btn_dem">Dem</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+
+        }
+
+        document.getElementById("btn_xoa").addEventListener("click", (event) => {
+            event.preventDefault();
+            document.getElementById("xau1").value = "";
+            document.getElementById("xau2").value = "";
+            document.getElementById("kq").value = "";
+        })
+
+        document.getElementById("btn_dem").addEventListener("click", (event) => {
+            event.preventDefault();
+            var xau1 = document.getElementById("xau1").value;
+            var xau2 = document.getElementById("xau2").value;
+            func(xau1, xau2);
+        })
+    </script>
+</body>
+
+</html>

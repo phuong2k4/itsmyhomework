@@ -1,213 +1,333 @@
 #include <bits/stdc++.h>
-#include <map>
 
 using namespace std;
+#include<bits/stdc++.h>
+using namespace std;
 
-struct SinhVien
-{
-    string id_code;
-    string name_Student;
-    int born_Year;
-    float average_Point;
+// List Struct
+struct SinhVien{
+	string hovaten;
+	string gioitinh;
+	long namsinh;
+	float diemtongket;
 };
 
-void input(vector<SinhVien> &ds, int &n)
-{
-    do
-    {
-        cout << "Nhap so luong sinh vien: ";
-        cin >> n;
-    } while (n < 0 && n >= 100);
-    cin.ignore();
-    for (int i = 0; i < n; i++)
-    {
-        SinhVien sv;
-        cout << "Nhap thong tin cua sinh vien: " << endl;
 
-        cout << "Ma sinh vien: " << endl;
-        getline(cin, sv.id_code);
-        cout << "Ten sinh vien: " << endl;
-        getline(cin, sv.name_Student);
-        cout << "Nam sinh: " << endl;
-        cin >> sv.born_Year;
-        cout << "Diem trung binh: " << endl;
-        cin >> sv.average_Point;
-
-        cin.ignore();
-        ds.push_back(sv);
-    }
+void input(vector<SinhVien> ds){
+	int n;
+	do{
+		cout << "Nhap so luong sinh vien: ";
+		cin >> n;
+	}while(n < 0 && n > 100);
+	cin.ignore();
+	for(int i = 0;i<n;i++){
+		SinhVien sv;
+		cout << "Nhap ho va ten: " ;
+		getline(cin, sv.hovaten);
+		cout << "Nhap gioi tinh: ";
+		getline(cin,sv.gioitinh);
+		cout << "Nhap nam sinh: ";
+		cin >> sv.namsinh;
+		cin.ignore();
+		cout << "Nhap diem tong ket: ";
+		cin >> sv.diemtongket;
+		cin.ignore();
+		
+		ds.push_back(sv);
+	}
 }
 
-void output(vector<SinhVien> &ds)
-{
-    if (ds.empty())
-    {
-        cout << "Khong co sinh vien trong bang du lieu.";
-        return;
-    }
-    cout << "\n===================================================================" << endl;
-    cout << "                         DANH SACH SINH VIEN" << endl;
-    cout << "-------------------------------------------------------------------" << endl;
-    cout << left << setw(10) << "Ma Sv:" << endl
-         << setw(30) << "Ten Sv: " << endl
-         << setw(10) << "Nam Sinh: " << endl
-         << setw(10) << "Diem Trung Binh: " << endl;
-
-    for (auto &sv : ds)
-    {
-        cout << left << setw(10) << sv.id_code
-             << setw(30) << sv.name_Student
-             << setw(10) << sv.born_Year
-             << fixed << setprecision(2) << sv.average_Point << endl;
-    }
+void output(vector<SinhVien> ds){
+	if(ds.empty()){
+		cout << "Danh sach trong.";
+		return;
+	}
+	cout << "Danh Sach Sinh Vien" << endl;
+	cout << left << setw(10) << "Ho va Ten"
+	<< setw(20) << "Gioi Tinh"
+	<< setw(20) << "Nam Sinh"
+	<< setw(10) << "Diem Tong Ket" << endl;
+	
+	for(auto it : ds){
+		cout << left << setw(10) << it.hovaten
+		<< setw(20) << it.gioitinh
+		<< setw(20) << it.namsinh
+		<< setw(10) << it.diemtongket << endl;
+	}
 }
 
-void sequentiallySearch(vector<SinhVien> &ds)
-{
-    if (ds.empty())
-    {
-        cout << "Khong co danh sach sinh vien!";
-        return;
-    }
-    string findSbd;
-    cout << "Nhap ho ten can tim: " << endl;
-    getline(cin, findSbd);
-    int i = 0;
-    while (i < ds.size() && ds[i].name_Student != findSbd)
-    {
-        i++;
-    }
-    if (i < ds.size())
-    {
-        cout << "Thong tin sinh vien tim kiem: " << endl;
-        cout << "Ma Sv: " << ds[i].id_code << endl;
-        cout << "Ten Sv: " << ds[i].name_Student << endl;
-        cout << "Nam Sinh : " << ds[i].born_Year << endl;
-        cout << "Diem Trung Binh: " << ds[i].average_Point << endl;
-    }
-    else
-    {
-        cout << "Khong co sinh vien nao co ten nhu vay!" << endl;
-        return;
-    }
+void sequentialSearch(vector<SinhVien> &ds){
+	string key;
+	cout << "Nhap ten sinh vien muon tim: ";
+	cin >> key;
+	int i = 0;
+	while(i< ds.size() && ds[i] != key){
+		i++;
+	}
+	if(i < ds.size()){
+		cout << left << setw(10) << "Ho va Ten"
+		<< setw(20) << "Gioi Tinh"
+		<< setw(20) << "Nam Sinh"
+		<< setw(10) << "Diem Tong Ket" << endl;
+		
+		cout << left << setw(10) << ds[i].hovaten
+		<< setw(20) << ds[i].gioitinh
+		<< setw(20) << ds[i].namsinh
+		<< setw(10) << ds[i].diemtongket << endl;
+		return;
+	}
+	cout << "khong co du lieu";
+	return;
 }
 
-void bubbleSort(vector<SinhVien> &ds)
-{
-    int n = ds.size();
-    bool swapped;
-    for (int i = 0; i < n - 1; i++)
-    {
-        swapped = false;
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            if (ds[j].average_Point < ds[j + 1].average_Point)
-            {
-                double temp = ds[j].average_Point;
-                ds[j].average_Point = ds[j + 1].average_Point;
-                ds[j + 1].average_Point = temp;
-                swapped = true;
-            }
-        }
-        if (!swapped)
-            return;
-    }
+void bbsort(vector<SinhVien> &ds){
+	for(int i = 0;i<ds.size()-1;i++){
+		bool swapped = false;
+		for(int j = 0;j<ds.size()-i-1;j++){
+			if(ds[j].diemtongket > ds[j+1].diemtongket){
+				swap(ds[j],ds[j+1]);
+				swapped=true;
+			}
+		}
+		if(!swapped)return;
+	}
 }
 
-void binarySearch(vector<SinhVien> &ds, double key)
-{
-    int left = 0, right = ds.size() - 1;
-    int mid;
-    while (left <= right)
-    {
-        mid = (left + right) / 2;
-        if (ds[mid].average_Point == key)
-        {
-            cout << "Thong tin sinh vien can tim: " << endl;
-            cout << "Ma Sinh Vien: " << ds[mid].id_code << endl;
-            cout << "Ten Sinh Vien: " << ds[mid].name_Student << endl;
-            cout << "Nam sinh Sinh Vien: " << ds[mid].born_Year << endl;
-            cout << "Diem TB: " << ds[mid].average_Point << endl;
-            return;
-        }
-        else if (ds[mid].average_Point > key)
-        {
-            right = mid - 1;
-        }
-        else
-        {
-            left = mid + 1;
-        }
-    }
-    cout << "Khong tim thay sinh vien";
+void binarySearch(vector<SinhVien> &ds){
+	float diemcantim;
+	cout << "Nhap Diem Can Tim: ";
+	cin >> diemcantim;
+	int l = 0,r=ds.size()-1;
+	int mid;
+	
+	while(l<r){
+		mid = (l+r)/2;
+		if(ds[mid].diemtongket == diemcantim){
+			cout << left << setw(10) << "Ho va Ten"
+			<< setw(20) << "Gioi Tinh"
+			<< setw(20) << "Nam Sinh"
+			<< setw(10) << "Diem Tong Ket" << endl;
+			
+			cout << left << setw(10) << ds[mid].hovaten
+			<< setw(20) << ds[mid].gioitinh
+			<< setw(20) << ds[mid].namsinh
+			<< setw(10) << ds[mid].diemtongket << endl;
+			return;
+		}else if(ds[mid].diemtongket > diemcantim){
+			r = mid - 1;
+		}else{
+			l = mid + 1;
+		}
+	}
+	cout << "Khong tim thay";
+	return;
 }
 
-void insertionSortString(vector<SinhVien> &ds)
-{
-    for (int i = 1; i < ds.size(); i++)
-    {
-        SinhVien flag = ds[i];
-        int j = i - 1;
-        while (j >= 0 && flag.name_Student < ds[j].name_Student)
-        {
-            ds[j + 1] = ds[j];
-            j--;
-        }
-        ds[j + 1] = flag;
-    }
+//List vector
+#define Max 100
+
+struct HangHoa{
+	int stt;
+	string MaHang;
+	string tenhang;
+	string donvitinh;
+	long dongia;
+	int soluong;
+	long long thanhtien;
+};
+
+struct Vector{
+	int count;
+	HangHoa hh[Max];
+};
+
+void nhap1Hang(HangHoa &hh){
+	cout << "Nhap So TT: ";
+	cin >> hh.stt;
+	cin.ignore();
+	cout << "Nhap Ma Hang: ";
+	getline(cin, hh.MaHang);
+	cout << "Nhap Ten Hang: ";
+	getline(cin, hh.tenhang);
+	cout << "Nhap Don Vi Tinh: ";
+	getline(cin,hh.donvitinh);
+	cout << "Nhap Don Gia: ";
+	cin >> hh.dongia;
+	cin.ignore();
+	cout << "Nhap So Luong: ";
+	cin >> hh.soluong;
+	cin.ignore();
+	hh.thanhtien = hh.dongia * hh.soluong;
 }
 
-void insertionSortInterger(vector<SinhVien>&ds){
-    for(int i = 1; i<ds.size();i++){
-        SinhVien flag = ds[i];
-        int j = i-1;
-        while(j>=0 && flag.average_Point < ds[j].average_Point){
-            ds[j+1] = ds[j];
-            j--;
-        }
-        ds[j+1] = flag;
-    }
+void nhapDanhSach(Vector &ds){
+	cout << "So luong hang hoa: ";
+	cin >> ds.count;
+	cin.ignore();
+	for(int i = 0;i<ds.count;i++){
+		HangHoa hhoa;
+		nhap1Hang(hhoa);
+		ds.hh[i] = hhoa;
+	}
 }
 
-void sequentiallySearchAdvanced(vector<SinhVien> &ds)
-{
-    if (ds.empty())
-    {
-        cout << "Danh Sach Sinh Vien Trong!" << endl;
-        return;
-    }
-    string findName;
-    getline(cin, findName);
-    int i = 0;
-    SinhVien sv;
-    sv.name_Student = findName;
-    ds.push_back(sv);
-
-    while (ds[ds.size()].name_Student != findName)
-    {
-        i++;
-    }
-    if (i < ds.size())
-    {
-        cout << "Thong tin sinh vien tim kiem: " << endl;
-        cout << "Ma Sv: " << ds[i].id_code << endl;
-        cout << "Ten Sv: " << ds[i].name_Student << endl;
-        cout << "Nam Sinh : " << ds[i].born_Year << endl;
-        cout << "Diem Trung Binh: " << ds[i].average_Point << endl;
-    }
-    else
-    {
-        cout << "Khong tim thay sinh vien! " << endl;
-    }
+void in1Hang(HangHoa &hh){
+	cout << left << setw(10) << hh.stt
+	<< setw(20) << hh.MaHang
+	<< setw(20) << hh.tenhang
+	<< setw(20) << hh.donvitinh
+	<< setw(20) << hh.dongia
+	<< setw(20) << hh.soluong
+	<< setw(20) << hh.thanhtien << endl;
 }
 
-int main()
-{
-    vector<SinhVien> list;
-    int quantity = 0;
+void xuatDanhSach(Vector &ds){
+	
+	if(ds.count <0){
+		cout << "Trong." << endl;
+		return;
+	}
+	
+	cout << "Danh sach hang hoa" << endl;
+	cout << left << setw(10) << "STT"
+	<< setw(20) << "Ma Hang"
+	<< setw(20) << "TenHang"
+	<< setw(20) << "Don Vi Tinh"
+	<< setw(20) << "Don Gia"
+	<< setw(20) << "So Luong"
+	<< setw(20) << "Thanh Tien" << endl;
+	
+	for(int i = 0;i<ds.count;i++){
+		in1Hang(ds.hh[i]);
+	}
+}
+void delHang(Vector &ds){
+	if(ds.count < 0){
+		cout << "Trong.";
+		return;
+	}
+	int n;
+	cout << "Ban muon xoa phan tu nao? ";
+	cin >> n;
+	for(int i = ds.count;i>=n;i--){
+		swap(ds.hh[i],ds.hh[i-1]);
+	}
+	ds.count--;
+}
 
-    input(list, quantity);
-    output(list);
+void insertHang(Vector &ds){
+	if(ds.count < 0){
+		HangHoa hhoa;
+		nhap1Hang(hhoa);
+		ds.hh[0] = hhoa;
+		return;
+	}
+	int n;
+	cout << "Nhap vi tri muon chen: ";
+	cin >> n;
+	for(int i = ds.count;i>n;i--){
+		swap(ds.hh[i],ds.hh[i-1]);
+	}
+	HangHoa hhoa;
+	nhap1Hang(hhoa);
+	ds.hh[n] = hhoa;
+	ds.count++;
+}
 
-    return 0;
+//list node
+struct HangHoa{
+	int stt;
+	string MaHang;
+	string tenhang;
+	string donvitinh;
+	long dongia;
+	int soluong;
+	long long thanhtien;
+};
+struct node{
+	HangHoa hh;
+	node *next;
+};
+
+typedef node *tro;
+
+void nhap1Hang(HangHoa &hh){
+	cout << "Nhap So TT: ";
+	cin >> hh.stt;
+	cin.ignore();
+	cout << "Nhap Ma Hang: ";
+	getline(cin, hh.MaHang);
+	cout << "Nhap Ten Hang: ";
+	getline(cin, hh.tenhang);
+	cout << "Nhap Don Vi Tinh: ";
+	getline(cin,hh.donvitinh);
+	cout << "Nhap Don Gia: ";
+	cin >> hh.dongia;
+	cin.ignore();
+	cout << "Nhap So Luong: ";
+	cin >> hh.soluong;
+	cin.ignore();
+	hh.thanhtien = hh.dongia * hh.soluong;
+}
+tro taoNode(HangHoa &hhoa){
+	tro p = new node;
+	p->hh = hhoa;
+	p->next = nullptr;
+	return p;
+}
+
+void nhapNode(tro &l, HangHoa &hh){
+	tro p = taoNode(hh);
+	if(l==nullptr){
+		l = p;
+		return;
+	}
+	tro q = l;
+	while(q->next != nullptr){
+		q= q->next;
+	}
+	q->next = p;
+}
+void in1Hang(HangHoa &hh){
+	cout << left << setw(10) << hh.stt
+	<< setw(20) << hh.MaHang
+	<< setw(20) << hh.tenhang
+	<< setw(20) << hh.donvitinh
+	<< setw(20) << hh.dongia
+	<< setw(20) << hh.soluong
+	<< setw(20) << hh.thanhtien << endl;
+}
+
+void xuatNode(tro &l){
+	if(l==nullptr){
+		cout << "Trong.";
+		return;
+	}
+	cout << "Danh sach hang hoa" << endl;
+	cout << left << setw(10) << "STT"
+	<< setw(20) << "Ma Hang"
+	<< setw(20) << "TenHang"
+	<< setw(20) << "Don Vi Tinh"
+	<< setw(20) << "Don Gia"
+	<< setw(20) << "So Luong"
+	<< setw(20) << "Thanh Tien" << endl;
+	tro p = l;
+	while(p!=nullptr){
+		in1Hang(p->hh);
+		p=p->next;
+	}
+}
+
+int main(){
+	tro l=nullptr;
+	int n;
+	cout << "So luong hang hoa: ";
+	cin >> n;
+	for(int i = 0;i<n;i++){
+		HangHoa hh;
+		nhap1Hang(hh);
+		nhapNode(l,hh);
+	}
+	xuatNode(l);
+	return 0;
 }

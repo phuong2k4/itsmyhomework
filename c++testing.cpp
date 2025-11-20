@@ -299,23 +299,37 @@ void heapsort(int a[], int n)
     }
 }
 
-void mergeSort(int a[], int m, int b[], int n, int c[]){
-	int k = 0, i = 0, j = 0;
-	while(i<m && j < n){
-		if(a[i] < b[j]){
-			c[k] = a[i]; i++;k++;
-		} 
-		else{
-			c[k] = b[j]; k++;j++;
-		}
-	}
-	while(i<m) c[k] = a[i]; i++;k++;
-	while(j<n) c[k] = b[j]; j++;k++;
+void mergeSort(int a[], int m, int b[], int n, int c[])
+{
+    int k = 0, i = 0, j = 0;
+    while (i < m && j < n)
+    {
+        if (a[i] < b[j])
+        {
+            c[k] = a[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            c[k] = b[j];
+            k++;
+            j++;
+        }
+    }
+    while (i < m)
+        c[k] = a[i];
+    i++;
+    k++;
+    while (j < n)
+        c[k] = b[j];
+    j++;
+    k++;
 }
 
 void merge(int a[], int l, int m, int r)
 {
-    vector<int> x(a + l, a + l + m + 1);
+    vector<int> x(a + l, a + m + 1);
     vector<int> y(a + m + 1, a + r + 1);
 
     int i = 0, j = 0;
